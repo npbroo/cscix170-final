@@ -17,4 +17,7 @@ To Edit:
 
 More:
 - My project checklist is inlcluded in the directory: './checklist.txt'
-- You can view my video demo here: 
+- You can view my video demo here: https://youtu.be/pwxmbb3Jwc8
+- You can view other additional deliverables in the './additional deliverables' folder 
+    - report
+    - powerpoint

@@ -75,20 +75,14 @@ def get_portfolio_value(prices, allocs, start_val):
     port_vals = pos_vals.sum(axis=1)
     return port_vals
 
-def calculate_profit(ticker, start_date, end_date, sv, parameters):
-    shares_per_trade = 1000
-    ticker_prices = get_data([ticker], pd.date_range(start_date, end_date), addSPY=False).dropna()
-    order_book = bollinger_rsi_strat(ticker_prices, ticker, shares_per_trade, parameters)
-    portvals = compute_portvals(order_book=order_book, start_val=sv)
-    return portvals[portvals.columns[0]][-1] # return the final portfolio value
-
 def RunCode():
     # Define input parameters below
-
+    verbose = False
+    show_orders = False
     sv = 100000
     start_date = '2000-02-10'
     end_date = '2012-06-10'
-    ticker = 'SPY'
+    ticker = 'AAPL'
     # Strategy Parameters
     new_params = {
             # = updated
@@ -100,12 +94,12 @@ def RunCode():
             'stop_loss_%': 0.03          # if an open order has a net loss greater to or equal to the stop loss then close the order
     }
 
-    # get portfolio stats for teh ticker
+    # get portfolio stats for the ticker
     ticker_prices = get_data([ticker], pd.date_range(start_date, end_date), addSPY=False)
     ticker_prices = ticker_prices.dropna()
 
     # create new strategy object and set the parameters
-    strategy = BBANDS_RSI_STRAT(verbose=True)
+    strategy = BBANDS_RSI_STRAT(verbose=verbose)
     strategy.set_params(new_params)
     order_book = strategy.run_strategy(ticker_prices, ticker, 1000)
 
@@ -144,7 +138,10 @@ def RunCode():
 
     print( f"Final Portfolio Value: \t\t{portvals[-1]}")
 
-    plot_data(portvals, [portvals_SPY], order_book=order_book)
+    if (show_orders):
+        plot_data(portvals, [portvals_SPY], order_book=order_book)
+    else:
+        plot_data(portvals, [portvals_SPY])
 
 if __name__ == "__main__":
     RunCode()

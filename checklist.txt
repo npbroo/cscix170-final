@@ -1,3 +1,5 @@
+**Effort level was about 1.5x to 2x the normal homework/projects**
+
 What has been implemented?
 
     In this program I extended HW4 to include extra functinoality. Instead of reading in order books from a file, you can generate virtual orderbooks using custom strategies and backtest to see how they perform.
@@ -34,3 +36,8 @@ Assumptions and limitations
     Lastly, I'm assuming that there is a market impact of 5% and that commission fees are a flat $9.95
 
     I am limited to only simple buy and sell orders, with trailing stop loss and take profit. My program cannot handle margin orders or trading options.
+
+Additional Deliverables:
+- Video Demo: https://youtu.be/pwxmbb3Jwc8
+- Report: in './additional deliverables'
+- Powerpoint: in './additional deliverables'
