@@ -1,0 +1,36 @@
+What has been implemented?
+
+    In this program I extended HW4 to include extra functinoality. Instead of reading in order books from a file, you can generate virtual orderbooks using custom strategies and backtest to see how they perform.
+    I have added 2 new directories: '.strategies/' and './strategies/indicators'
+    Within these two folders is where you can add new indicators and strategies to the program
+
+    Indicators:
+    - indicators go in the indicators folder 
+    - they may include parameters to tune them to their specific use cases
+    - base package includes two indicators: RSI indicator and Bollinger Bands indicator
+
+    Strategies:
+    - strategies go in the strategies forlder 
+    - strategies may also include parameters to tune them to their specific use cases
+    - all strategies must extend the abstract_strategy.py class
+    - strategies are used to create rules around indicator metrics and create buy and sell orders on the order book depending on those rules
+
+    By backtesting a strategy-generated orderbook, you can see how your strategies perform with different stocks and tune them with new parameter strategies
+
+
+What has not been implemented?
+
+    Originally I planned to also to also include an optimizer that could maximize profit for a certain strategy for a specific time period and stock.
+    I later learned that I could not use SciPy's optimizer solvers for this problem since it was a non-linear, mixed-integer optimization problem. (more explained in report and powepoint)
+    the deprecated code is located in '.deprecated/minimizer.py'
+
+    this code is not required to work for the project I am doing but more of a fun experiment. I figured I would leave it in the project directory rather than delete it.
+
+Assumptions and limitations
+
+    My assumptions include that that a stockholder is only buying and selling the same stock for each strategy iteration
+    I also assume that the user is buying and selling the same amount of shares for each stock
+    I'm also assuming that there are 252 trading days in a year while getting the portfolio stats and calculating the sharpe ratio.
+    Lastly, I'm assuming that there is a market impact of 5% and that commission fees are a flat $9.95
+
+    I am limited to only simple buy and sell orders, with trailing stop loss and take profit. My program cannot handle margin orders or trading options.
